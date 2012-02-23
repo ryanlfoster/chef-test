@@ -21,3 +21,5 @@ cd ~/chef &&
 tar xj &&
 sudo bash install.sh'
 
+# add `sudo bash remove.sh` before calling install.sh to remove extra crap like libreoffice*.*
+# so we don't spend time updating a lot of stuff that we don't care about.
