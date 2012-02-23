@@ -16,7 +16,7 @@ end
 # --- Set host name ---
 # Note how this is plain Ruby code, so we can define variables to
 # DRY up our code:
-hostname = 'opinionatedprogrammer.com'
+hostname = 'vagrant-ubuntu-11-10'
 
 file '/etc/hostname' do
   content "#{hostname}\n"
