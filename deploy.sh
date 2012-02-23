@@ -1,9 +1,13 @@
 #!/bin/bash
 
-# 1. Install openssh-server on VM.
-# 2. Update the following line in `sudo visudo` before using this.
-#    %admin ALL=NOPASSWD: ALL
-# 3. Add port forwarding to the VM for ssh (e.g. host ip, port 2022 to guest ip, port 22)
+# Install a base VM using the normal Ubuntu iso in VirtualBox.
+# Install openssh-server on VM.
+# Update the following line in `sudo visudo` before using this.
+#   %admin ALL=NOPASSWD: ALL
+# Add port forwarding to the VM for ssh (e.g. host ip, port 2022 to guest ip, port 22)
+# Run ./deploy.sh vagrant@hostIp hostForwardedPort
+# Running this script will update the Linux kernel (almost certainly), so can we install
+#   the VirtualBox Guest Additions via chef?
 
 # Usage: ./deploy.sh [host] [port]
 
@@ -19,6 +23,7 @@ sudo rm -rf ~/chef &&
 mkdir ~/chef &&
 cd ~/chef &&
 tar xj &&
+sudo bash remove.sh &&
 sudo bash install.sh'
 
 # add `sudo bash remove.sh` before calling install.sh to remove extra crap like libreoffice*.*
