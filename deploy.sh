@@ -22,7 +22,7 @@ tar cj . | ssh -o 'StrictHostKeyChecking no' -p ${port} "${host}" '
 sudo rm -rf ~/chef &&
 mkdir ~/chef &&
 cd ~/chef &&
-tar xj &&
+tar xvj &&
 sudo bash remove.sh &&
 sudo bash install.sh'
 
