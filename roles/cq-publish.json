@@ -1,0 +1,20 @@
+{
+  "name": "cq",
+  "default_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "run_list": [
+    "recipe[cq::user]",
+    "recipe[cq::install]"
+  ],
+  "description": "CQ",
+  "chef_type": "role",
+  "override_attributes": {
+  "cq": {
+    "cq_instance_type": "publish",
+    "cq_instance_port": 5503
+    }
+  }
+}
+
+

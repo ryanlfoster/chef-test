@@ -1,0 +1,13 @@
+{
+  "name": "java",
+  "default_attributes": {
+  },
+  "json_class": "Chef::Role",
+  "run_list": [
+    "recipe[java::sun-centos]"
+  ],
+  "description": "Java",
+  "chef_type": "role",
+  "override_attributes": {
+  }
+}
