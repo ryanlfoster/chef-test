@@ -17,7 +17,6 @@
 # limitations under the License.
 #
 
-include_recipe "java"
 maven_home = node['maven']["m2_home"]
 
 java_ark "maven3" do
