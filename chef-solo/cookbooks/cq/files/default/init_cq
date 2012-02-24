@@ -1,0 +1,65 @@
+#!/bin/bash
+#
+# Init file for CQ Author/Publish server.
+# This script programmatically determines the location of the CQ instance
+# installation from the server hostname.
+#
+# chkconfig: 2345 55 25
+# description: CQ Author/Publish server
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+RUN_AS_USER=cq
+
+if [[ ${HOSTNAME} == *author* ]]; then
+  CQ_INSTANCE_TYPE=author
+elif [[ ${HOSTNAME} == *publish* ]]; then
+  CQ_INSTANCE_TYPE=publish
+else
+  echo "Cannot determine CQ instance type. Hostname is [${HOSTNAME}] and does not contain 'author' or 'publish'."
+  exit 1
+fi
+
+CQ_HOME=/opt/cq/${CQ_INSTANCE_TYPE}
+
+start() {
+        echo "Starting CQ ${CQ_INSTANCE_TYPE} server: "
+        if [ "x$USER" != "x$RUN_AS_USER" ]; then
+          su - $RUN_AS_USER -c "$CQ_HOME/crx-quickstart/server/serverctl start"
+        else
+          $CQ_HOME/crx-quickstart/server/serverctl start
+        fi
+        echo "done."
+}
+stop() {
+        echo "Shutting down ${CQ_INSTANCE_TYPE} server: "
+        if [ "x$USER" != "x$RUN_AS_USER" ]; then
+          su - $RUN_AS_USER -c "$CQ_HOME/crx-quickstart/server/serverctl stop"
+        else
+          $CQ_HOME/crx-quickstart/server/serverctl stop
+        fi
+        echo "done."
+}
+
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart)
+        stop
+        sleep 10
+        #echo "Hard killing any remaining threads.."
+        #kill -9 `cat $CQ_HOME/work/cq.pid`
+        start
+        ;;
+  *)
+        echo "Usage: $0 {start|stop|restart}"
+esac
+
+exit 0
+
