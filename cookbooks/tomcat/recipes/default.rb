@@ -76,28 +76,3 @@ template "/etc/tomcat6/server.xml" do
   mode "0644"
   notifies :restart, resources(:service => "tomcat")
 end
-
-template "/etc/tomcat6/tomcat-users.xml" do
-  source "tomcat-users.xml.erb"
-  owner "root"
-  group "root"
-  mode "0644"
-  notifies :restart, resources(:service => "tomcat")
-end
-
-template "/var/lib/tomcat6/webapps/ROOT/index.html" do
-  source "index.erb"
-  owner "tomcat6"
-  group "tomcat6"
-  mode "0644"
-  notifies :restart, resources(:service => "tomcat")
-end
-
-template "/etc/tomcat6/web.xml" do
-  source "web.xml.erb"
-  owner "root"
-  group "root"
-  mode "0644"
-  notifies :restart, resources(:service => "tomcat")
-end
-

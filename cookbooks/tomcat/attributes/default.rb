@@ -16,16 +16,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-default["tomcat"]["port"] = 80
+default["tomcat"]["port"] = 8080
 default["tomcat"]["ssl_port"] = 8443
 default["tomcat"]["ajp_port"] = 8009
-#default["tomcat"]["java_options"] = "-Xmx128M -Djava.awt.headless=true"
-default["tomcat"]["java_options"] = "-Xms128m -Xmx1024m -XX:MaxPermSize=256m $JAVA_OPTS -Djava.awt.headless=true"
+default["tomcat"]["java_options"] = "-Xmx128M -Djava.awt.headless=true"
 default["tomcat"]["use_security_manager"] = false
-
-#Custom added by g.l.
-default["tomcat"]["download_url"] = "http://10.183.33.173/dev-setup/tomcat"
-default["tomcat"]["tarball_name"] = "apache-tomcat-7.0.23"
 
 case platform
 when "centos","redhat","fedora"
@@ -50,11 +45,6 @@ when "debian","ubuntu"
   set["tomcat"]["work_dir"] = "/var/cache/tomcat6"
   set["tomcat"]["context_dir"] = "#{tomcat["config_dir"]}/Catalina/localhost"
   set["tomcat"]["webapp_dir"] = "/var/lib/tomcat6/webapps"
-  #Added by g.l. 
-  set["tomcat"]["webuser"] = "akqa"
-  set["tomcat"]["webpasswd"] = "Waxu8Ave"
-  set["tomcat"]["uid"] = 91
-  set["tomcat"]["gid"] = 91
 else
   set["tomcat"]["user"] = "tomcat6"
   set["tomcat"]["group"] = "tomcat6"

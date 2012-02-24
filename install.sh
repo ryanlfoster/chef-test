@@ -24,4 +24,5 @@ if ! test -f "$chef_binary"; then
 fi &&
 
 "$chef_binary" -c solo.rb -j solo.json
+"$chef_binary" -c solo.rb -j java.json
 

@@ -4,10 +4,13 @@
   },
   "json_class": "Chef::Role",
   "run_list": [
-    "recipe[java::sun-centos]"
+    "recipe[java::oracle]"
   ],
   "description": "Java",
   "chef_type": "role",
   "override_attributes": {
+    "java": {
+	  "install_flavor": "oracle"
+	}
   }
 }

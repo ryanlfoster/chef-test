@@ -1,6 +1,0 @@
-[custom]
-
-name=RHEL 6 Custom
-baseurl=http://10.183.33.173/dev-setup/rhel6/rpms/
-gpgcheck=0
-

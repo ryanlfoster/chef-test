@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: jpackage
-# Attributes:: default
+# Cookbook Name:: maven
+# Recipe:: maven3
 #
-# Copyright 2010, Opscode, Inc.
+# Copyright 2011, Bryan W. Berry (<bryan.berry@gmail.com>)
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,4 +17,18 @@
 # limitations under the License.
 #
 
-default[:jpackage][:version] = "5.0"
+include_recipe "java"
+maven_home = node['maven']["m2_home"]
+
+java_ark "maven3" do
+  url node['maven']['3']['url']
+  checksum node['maven']['3']['checksum']
+  app_home maven_home
+  bin_cmds ["mvn"]
+  action :install
+end
+
+template "/etc/mavenrc" do
+  source "mavenrc.erb"
+  mode "0755"
+end
