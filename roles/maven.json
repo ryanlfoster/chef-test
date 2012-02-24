@@ -1,16 +1,16 @@
 {
-  "name": "java",
+  "name": "maven",
   "default_attributes": {
   },
   "json_class": "Chef::Role",
   "run_list": [
-    "recipe[java::oracle]"
+    "recipe[maven::maven3]"
   ],
-  "description": "Java",
+  "description": "Maven",
   "chef_type": "role",
   "override_attributes": {
-    "java": {
-	  "install_flavor": "oracle"
+    "maven": {
+	  "m2_home": "/home/vagrant/akqa/audi/tools/maven"
 	}
   }
 }
